@@ -3,131 +3,587 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pretend Marketplace</title>
+  <title>AmazBay — Pretend Marketplace Demo</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f9; color: #333; }
-    .banner { background: #ffcc00; text-align: center; padding: 10px; font-weight: bold; }
-    header { background: #232f3e; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
-    .container { display: flex; gap: 20px; padding: 20px; max-width: 1100px; margin: auto; }
-    .products { flex: 2; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
-    .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
-    .card button { background: #ffa41c; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; }
-    .card button:hover { background: #ff8f00; }
-    .cart-box { flex: 1; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); height: fit-content; }
-    input { width: 100%; padding: 8px; margin: 8px 0; box-sizing: border-box; }
-    .buy-btn { background: #28a745; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; cursor: pointer; font-size: 16px; }
-    .confirmation { margin-top: 15px; padding: 15px; background: #d4edda; color: #155724; border-radius: 5px; display: none; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+    body { background-color: #eaeded; color: #0f1111; }
+
+    /* Safety Demo Banner */
+    .demo-banner {
+      background: #ffd814;
+      color: #0f1111;
+      text-align: center;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      border-bottom: 1px solid #e0b900;
+    }
+
+    /* Amazon/eBay Style Top Header */
+    header {
+      background-color: #131921;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .logo span { color: #ff9900; }
+    .logo small { font-size: 11px; font-weight: 400; color: #ccc; display: block; margin-top: -4px; }
+
+    /* Search Bar */
+    .search-bar {
+      flex: 1;
+      display: flex;
+      height: 40px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .search-bar select {
+      background: #e6e6e6;
+      border: none;
+      padding: 0 10px;
+      font-size: 13px;
+      color: #333;
+      cursor: pointer;
+      border-right: 1px solid #cdcdcd;
+    }
+    .search-bar input {
+      flex: 1;
+      border: none;
+      padding: 0 12px;
+      font-size: 15px;
+      outline: none;
+    }
+    .search-bar button {
+      background: #febd69;
+      border: none;
+      padding: 0 18px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .search-bar button:hover { background: #f3a847; }
+
+    /* Header Right Buttons */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .nav-item {
+      cursor: pointer;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+    .nav-item strong { font-size: 14px; display: block; }
+    .cart-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: white;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 4px;
+    }
+    .cart-btn:hover { border-color: white; }
+    .cart-count {
+      background: #ff9900;
+      color: #131921;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 12px;
+      font-size: 14px;
+    }
+
+    /* Sub-Navigation Bar */
+    .sub-nav {
+      background-color: #232f3e;
+      color: white;
+      padding: 8px 20px;
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      overflow-x: auto;
+    }
+    .sub-nav span {
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+    .sub-nav span:hover, .sub-nav span.active {
+      background: #37475a;
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(135deg, #232f3e 0%, #37475a 100%);
+      color: white;
+      padding: 28px 30px;
+      margin: 15px auto 0;
+      max-width: 1300px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .hero h1 { font-size: 26px; margin-bottom: 6px; }
+    .hero p { color: #d5dbdb; font-size: 14px; }
+    .hero-badge {
+      background: #cc0c39;
+      padding: 8px 14px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* Main Grid */
+    .main-container {
+      max-width: 1300px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+    .section-title {
+      font-size: 20px;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    /* Product Cards */
+    .product-card {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      transition: transform 0.15s ease;
+    }
+    .product-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+    .product-img {
+      width: 100%;
+      height: 170px;
+      background: #f7f8f8;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      margin-bottom: 12px;
+      position: relative;
+    }
+    .deal-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #cc0c39;
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 3px 6px;
+      border-radius: 3px;
+    }
+    .product-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #0f1111;
+      margin-bottom: 4px;
+    }
+    .seller { font-size: 12px; color: #565959; margin-bottom: 6px; }
+    .rating { color: #ffa41c; font-size: 14px; margin-bottom: 6px; }
+    .rating span { color: #007185; font-size: 12px; margin-left: 4px; }
+    .price { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+    .price sup { font-size: 12px; }
+    .shipping { font-size: 12px; color: #565959; margin-bottom: 12px; }
+    .shipping strong { color: #007600; }
+
+    .btn-group { display: flex; flex-direction: column; gap: 8px; }
+    .btn-cart {
+      background: #ffd814;
+      border: 1px solid #fcd200;
+      border-radius: 20px;
+      padding: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-cart:hover { background: #f7ca00; }
+    .btn-buy {
+      background: #ffa41c;
+      border: 1px solid #ff8f00;
+      border-radius: 20px;
+      padding: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-buy:hover { background: #fa8900; }
+
+    /* Slide-over Cart & Checkout Drawer */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      z-index: 200;
+    }
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: -420px;
+      width: 100%;
+      max-width: 400px;
+      height: 100%;
+      background: white;
+      z-index: 201;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.25s ease;
+      overflow-y: auto;
+    }
+    .drawer.open { right: 0; }
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 12px;
+      margin-bottom: 15px;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+    }
+    .cart-list { flex: 1; overflow-y: auto; }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+    .remove-btn {
+      color: #007185;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+    .remove-btn:hover { text-decoration: underline; }
+
+    .checkout-section {
+      border-top: 2px solid #eee;
+      padding-top: 15px;
+      margin-top: 10px;
+    }
+    .checkout-section input {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0 12px;
+      border: 1px solid #888c8c;
+      border-radius: 4px;
+    }
+    .place-order-btn {
+      width: 100%;
+      background: #ffd814;
+      border: 1px solid #fcd200;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .place-order-btn:hover { background: #f7ca00; }
+
+    .order-receipt {
+      display: none;
+      background: #f0f8ff;
+      border: 1px solid #007185;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 15px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .order-receipt h4 { color: #007600; margin-bottom: 6px; }
   </style>
 </head>
 <body>
 
-  <div class="banner">🚧 PRETEND MARKETPLACE DEMO — Fake store for practice only. Do not enter real card info!</div>
+  <div class="demo-banner">
+    🚧 PRETEND MARKETPLACE DEMO — Fake store for practice only. Any card number works & nothing will actually ship!
+  </div>
 
+  <!-- Top Navigation -->
   <header>
-    <h2>ShopZone (Demo)</h2>
-    <div>Cart Items: <span id="cart-count">0</span></div>
+    <div class="logo" onclick="filterCategory('All')">
+      Amaz<span>Bay</span>
+      <small>Pretend Store</small>
+    </div>
+
+    <div class="search-bar">
+      <select id="category-select" onchange="filterProducts()">
+        <option value="All">All</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Weird & Fun">Weird & Fun</option>
+        <option value="Fashion">Fashion</option>
+      </select>
+      <input type="text" id="search-input" placeholder="Search AmazBay pretend items..." onkeyup="filterProducts()" />
+      <button onclick="filterProducts()">🔍</button>
+    </div>
+
+    <div class="header-actions">
+      <div class="nav-item" onclick="openCart()">
+        Hello, Guest
+        <strong>Orders & Cart</strong>
+      </div>
+      <button class="cart-btn" onclick="openCart()">
+        🛒 <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
   </header>
 
-  <div class="container">
-    <!-- Product List -->
-    <div class="products" id="product-list"></div>
+  <!-- Sub-navigation -->
+  <div class="sub-nav">
+    <span class="active" onclick="setSubNav(this, 'All')">All Deals</span>
+    <span onclick="setSubNav(this, 'Electronics')">Electronics</span>
+    <span onclick="setSubNav(this, 'Weird & Fun')">Weird & Fun</span>
+    <span onclick="setSubNav(this, 'Fashion')">Fashion</span>
+  </div>
 
-    <!-- Cart & Pretend Checkout -->
-    <div class="cart-box">
-      <h3>Your Cart</h3>
-      <ul id="cart-items"></ul>
-      <p><strong>Total: $<span id="cart-total">0.00</span></strong></p>
-      <hr />
-      <h4>Pretend Checkout</h4>
+  <!-- Promo Banner -->
+  <div class="main-container">
+    <div class="hero">
+      <div>
+        <h1>Mega Pretend Deals Day</h1>
+        <p>Add anything to your cart and pay with any pretend card number. Instant fake delivery dates!</p>
+      </div>
+      <div class="hero-badge">100% FAKE DEALS</div>
+    </div>
+
+    <h2 class="section-title" style="margin-top: 22px;" id="grid-heading">Featured Marketplace Items</h2>
+    <div class="product-grid" id="product-grid"></div>
+  </div>
+
+  <!-- Slide-out Cart & Checkout Drawer -->
+  <div class="overlay" id="overlay" onclick="closeCart()"></div>
+  <div class="drawer" id="cart-drawer">
+    <div class="drawer-header">
+      <h3>Shopping Cart</h3>
+      <button class="close-btn" onclick="closeCart()">✕</button>
+    </div>
+
+    <div class="cart-list" id="cart-items">
+      <p style="color:#565959;">Your cart is empty.</p>
+    </div>
+
+    <div class="checkout-section">
+      <p style="font-size: 18px; margin-bottom: 10px;">
+        Subtotal: <strong>$<span id="cart-total">0.00</span></strong>
+      </p>
+
       <form id="checkout-form">
-        <label>Pretend Card Number (any numbers work):</label>
-        <input type="text" id="card-number" placeholder="1111 2222 3333 4444" required />
-        <button type="submit" class="buy-btn">Buy Now</button>
+        <label style="font-size: 13px; font-weight: 600;">Pretend Card Number (any digits work):</label>
+        <input type="text" id="card-input" placeholder="e.g. 1234 5678 9012 3456" required />
+        <button type="submit" class="place-order-btn">Place Pretend Order</button>
       </form>
-      <div class="confirmation" id="confirmation-box"></div>
+
+      <div class="order-receipt" id="order-receipt"></div>
     </div>
   </div>
 
   <script>
-    // 1. Fake products data
     const products = [
-      { id: 1, name: "Invisible Cloak", price: 49.99 },
-      { id: 2, name: "Hoverboard", price: 199.99 },
-      { id: 3, name: "Infinite Pizza Box", price: 25.00 },
-      { id: 4, name: "Time Machine Watch", price: 120.50 }
+      { id: 1, name: "Quantum Hoverboard Pro", category: "Electronics", price: 199.99, rating: "★★★★★", reviews: "4,812", seller: "FutureTech Inc.", emoji: "🛹", deal: "35% OFF" },
+      { id: 2, name: "Invisibility Cloak (Standard Size)", category: "Fashion", price: 89.50, rating: "★★★★☆", reviews: "1,209", seller: "WizardGoods", emoji: "🧥", deal: "TOP PICK" },
+      { id: 3, name: "Infinite Refill Pizza Box", category: "Weird & Fun", price: 34.99, rating: "★★★★★", reviews: "9,430", seller: "SnackLabs", emoji: "🍕", deal: "DEAL" },
+      { id: 4, name: "Pocket Time-Travel Watch", category: "Electronics", price: 249.00, rating: "★★★★☆", reviews: "876", seller: "ChronoCorp", emoji: "⌚", deal: "LIMITED" },
+      { id: 5, name: "Anti-Gravity Sneakers", category: "Fashion", price: 129.99, rating: "★★★★★", reviews: "3,110", seller: "SkyWalkers", emoji: "👟", deal: "20% OFF" },
+      { id: 6, name: "Telepathic Pet Translator", category: "Weird & Fun", price: 59.00, rating: "★★★★☆", reviews: "2,540", seller: "BarkTalk", emoji: "🐶", deal: "POPULAR" },
+      { id: 7, name: "Hologram Gaming Projector", category: "Electronics", price: 310.00, rating: "★★★★★", reviews: "6,012", seller: "PixelForge", emoji: "🎮", deal: "BESTSELLER" },
+      { id: 8, name: "Self-Folding Laundry Basket", category: "Weird & Fun", price: 45.00, rating: "★★★★★", reviews: "5,321", seller: "LazyHome", emoji: "🧺", deal: "HOT DEAL" }
     ];
 
     let cart = [];
 
-    // 2. Display products on the page
-    const productList = document.getElementById("product-list");
-    products.forEach(item => {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `
-        <h4>${item.name}</h4>
-        <p>$${item.price.toFixed(2)}</p>
-        <button onclick="addToCart(${item.id})">Add to Cart</button>
-      `;
-      productList.appendChild(div);
-    });
+    function renderProducts(list) {
+      const grid = document.getElementById("product-grid");
+      grid.innerHTML = "";
 
-    // 3. Add item to cart
-    function addToCart(id) {
-      const product = products.find(p => p.id === id);
-      cart.push(product);
-      updateCart();
+      if (list.length === 0) {
+        grid.innerHTML = "<p>No pretend items matched your search.</p>";
+        return;
+      }
+
+      list.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        const whole = Math.floor(item.price);
+        const cents = (item.price % 1).toFixed(2).substring(2);
+
+        card.innerHTML = `
+          <div>
+            <div class="product-img">
+              <span class="deal-tag">${item.deal}</span>
+              ${item.emoji}
+            </div>
+            <div class="product-title">${item.name}</div>
+            <div class="seller">Sold by ${item.seller}</div>
+            <div class="rating">${item.rating}<span>(${item.reviews})</span></div>
+            <div class="price"><sup>$</sup>${whole}<sup>${cents}</sup></div>
+            <div class="shipping"><strong>FREE Pretend Delivery</strong></div>
+          </div>
+          <div class="btn-group">
+            <button class="btn-cart" onclick="addToCart(${item.id}, false)">Add to Cart</button>
+            <button class="btn-buy" onclick="addToCart(${item.id}, true)">Buy Now</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
     }
 
-    // 4. Update cart display
-    function updateCart() {
-      const cartItems = document.getElementById("cart-items");
-      const cartCount = document.getElementById("cart-count");
-      const cartTotal = document.getElementById("cart-total");
+    function filterProducts() {
+      const query = document.getElementById("search-input").value.toLowerCase();
+      const category = document.getElementById("category-select").value;
 
-      cartItems.innerHTML = "";
-      let total = 0;
-
-      cart.forEach(item => {
-        total += item.price;
-        const li = document.createElement("li");
-        li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
-        cartItems.appendChild(li);
+      const filtered = products.filter(p => {
+        const matchesSearch = p.name.toLowerCase().includes(query) || p.seller.toLowerCase().includes(query);
+        const matchesCat = category === "All" || p.category === category;
+        return matchesSearch && matchesCat;
       });
 
-      cartCount.textContent = cart.length;
-      cartTotal.textContent = total.toFixed(2);
+      document.getElementById("grid-heading").textContent =
+        category === "All" ? "Featured Marketplace Items" : `${category} Items`;
+      renderProducts(filtered);
     }
 
-    // 5. Handle pretend purchase
-    document.getElementById("checkout-form").addEventListener("submit", function(e) {
-      e.preventDefault(); // Stops the page from refreshing
+    function setSubNav(el, category) {
+      document.querySelectorAll(".sub-nav span").forEach(s => s.classList.remove("active"));
+      el.classList.add("active");
+      document.getElementById("category-select").value = category;
+      filterProducts();
+    }
 
+    function filterCategory(category) {
+      document.getElementById("category-select").value = category;
+      document.getElementById("search-input").value = "";
+      filterProducts();
+    }
+
+    function addToCart(id, openImmediately) {
+      const product = products.find(p => p.id === id);
+      cart.push(product);
+      updateCartUI();
+      if (openImmediately) openCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const list = document.getElementById("cart-items");
+      const count = document.getElementById("cart-count");
+      const totalEl = document.getElementById("cart-total");
+
+      count.textContent = cart.length;
+
+      if (cart.length === 0) {
+        list.innerHTML = `<p style="color:#565959;">Your cart is empty.</p>`;
+        totalEl.textContent = "0.00";
+        return;
+      }
+
+      list.innerHTML = "";
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <div>
+            <strong>${item.emoji} ${item.name}</strong><br>
+            <span style="color:#565959;">$${item.price.toFixed(2)}</span>
+          </div>
+          <button class="remove-btn" onclick="removeFromCart(${index})">Delete</button>
+        `;
+        list.appendChild(div);
+      });
+
+      totalEl.textContent = total.toFixed(2);
+    }
+
+    function openCart() {
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("cart-drawer").classList.add("open");
+    }
+
+    function closeCart() {
+      document.getElementById("overlay").style.display = "none";
+      document.getElementById("cart-drawer").classList.remove("open");
+    }
+
+    document.getElementById("checkout-form").addEventListener("submit", function(e) {
+      e.preventDefault();
       if (cart.length === 0) {
         alert("Your cart is empty! Add an item first.");
         return;
       }
 
-      // Generate a fake delivery date 5 days from today
+      // Generate fake delivery date (4 days from today)
       const deliveryDate = new Date();
-      deliveryDate.setDate(deliveryDate.getDate() + 5);
-      const formattedDate = deliveryDate.toDateString();
+      deliveryDate.setDate(deliveryDate.getDate() + 4);
+      const formattedDate = deliveryDate.toLocaleDateString("en-US", {
+        weekday: "long", month: "short", day: "numeric", year: "numeric"
+      });
 
-      // Show confirmation message
-      const box = document.getElementById("confirmation-box");
-      box.style.display = "block";
-      box.innerHTML = `
-        <strong>✅ Item bought!</strong><br>
-        Estimated delivery: <strong>${formattedDate}</strong><br>
-        <small>(Note: This is a pretend store—no real payment was charged and nothing will ship!)</small>
+      // Generate fake order number
+      const fakeOrderId = "FAKE-" + Math.floor(100000 + Math.random() * 900000);
+
+      const receipt = document.getElementById("order-receipt");
+      receipt.style.display = "block";
+      receipt.innerHTML = `
+        <h4>✅ Order Placed! Item bought!</h4>
+        <p><strong>Order #:</strong> ${fakeOrderId}</p>
+        <p><strong>Estimated Delivery:</strong> ${formattedDate}</p>
+        <p style="margin-top:6px; font-size:12px; color:#565959;">
+          (Reminder: This is a pretend marketplace—no real card was charged and nothing will ever arrive!)
+        </p>
       `;
 
-      // Reset cart and input
       cart = [];
-      updateCart();
-      document.getElementById("card-number").value = "";
+      updateCartUI();
+      document.getElementById("card-input").value = "";
     });
-  </script>
 
+    // Load products on start
+    renderProducts(products);
+  </script>
 </body>
 </html>
