@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pretend Marketplace</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f9; color: #333; }
+    .banner { background: #ffcc00; text-align: center; padding: 10px; font-weight: bold; }
+    header { background: #232f3e; color: white; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center; }
+    .container { display: flex; gap: 20px; padding: 20px; max-width: 1100px; margin: auto; }
+    .products { flex: 2; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+    .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; }
+    .card button { background: #ffa41c; border: none; padding: 10px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; }
+    .card button:hover { background: #ff8f00; }
+    .cart-box { flex: 1; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); height: fit-content; }
+    input { width: 100%; padding: 8px; margin: 8px 0; box-sizing: border-box; }
+    .buy-btn { background: #28a745; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; cursor: pointer; font-size: 16px; }
+    .confirmation { margin-top: 15px; padding: 15px; background: #d4edda; color: #155724; border-radius: 5px; display: none; }
+  </style>
+</head>
+<body>
+
+  <div class="banner">🚧 PRETEND MARKETPLACE DEMO — Fake store for practice only. Do not enter real card info!</div>
+
+  <header>
+    <h2>ShopZone (Demo)</h2>
+    <div>Cart Items: <span id="cart-count">0</span></div>
+  </header>
+
+  <div class="container">
+    <!-- Product List -->
+    <div class="products" id="product-list"></div>
+
+    <!-- Cart & Pretend Checkout -->
+    <div class="cart-box">
+      <h3>Your Cart</h3>
+      <ul id="cart-items"></ul>
+      <p><strong>Total: $<span id="cart-total">0.00</span></strong></p>
+      <hr />
+      <h4>Pretend Checkout</h4>
+      <form id="checkout-form">
+        <label>Pretend Card Number (any numbers work):</label>
+        <input type="text" id="card-number" placeholder="1111 2222 3333 4444" required />
+        <button type="submit" class="buy-btn">Buy Now</button>
+      </form>
+      <div class="confirmation" id="confirmation-box"></div>
+    </div>
+  </div>
+
+  <script>
+    // 1. Fake products data
+    const products = [
+      { id: 1, name: "Invisible Cloak", price: 49.99 },
+      { id: 2, name: "Hoverboard", price: 199.99 },
+      { id: 3, name: "Infinite Pizza Box", price: 25.00 },
+      { id: 4, name: "Time Machine Watch", price: 120.50 }
+    ];
+
+    let cart = [];
+
+    // 2. Display products on the page
+    const productList = document.getElementById("product-list");
+    products.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <h4>${item.name}</h4>
+        <p>$${item.price.toFixed(2)}</p>
+        <button onclick="addToCart(${item.id})">Add to Cart</button>
+      `;
+      productList.appendChild(div);
+    });
+
+    // 3. Add item to cart
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      cart.push(product);
+      updateCart();
+    }
+
+    // 4. Update cart display
+    function updateCart() {
+      const cartItems = document.getElementById("cart-items");
+      const cartCount = document.getElementById("cart-count");
+      const cartTotal = document.getElementById("cart-total");
+
+      cartItems.innerHTML = "";
+      let total = 0;
+
+      cart.forEach(item => {
+        total += item.price;
+        const li = document.createElement("li");
+        li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+        cartItems.appendChild(li);
+      });
+
+      cartCount.textContent = cart.length;
+      cartTotal.textContent = total.toFixed(2);
+    }
+
+    // 5. Handle pretend purchase
+    document.getElementById("checkout-form").addEventListener("submit", function(e) {
+      e.preventDefault(); // Stops the page from refreshing
+
+      if (cart.length === 0) {
+        alert("Your cart is empty! Add an item first.");
+        return;
+      }
+
+      // Generate a fake delivery date 5 days from today
+      const deliveryDate = new Date();
+      deliveryDate.setDate(deliveryDate.getDate() + 5);
+      const formattedDate = deliveryDate.toDateString();
+
+      // Show confirmation message
+      const box = document.getElementById("confirmation-box");
+      box.style.display = "block";
+      box.innerHTML = `
+        <strong>✅ Item bought!</strong><br>
+        Estimated delivery: <strong>${formattedDate}</strong><br>
+        <small>(Note: This is a pretend store—no real payment was charged and nothing will ship!)</small>
+      `;
+
+      // Reset cart and input
+      cart = [];
+      updateCart();
+      document.getElementById("card-number").value = "";
+    });
+  </script>
+
+</body>
+</html>
