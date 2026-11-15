@@ -79,12 +79,13 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 14px;
     }
     .nav-item {
       cursor: pointer;
       font-size: 12px;
       line-height: 1.2;
+      white-space: nowrap;
     }
     .nav-item strong { font-size: 14px; display: block; }
     .cart-btn {
@@ -97,8 +98,14 @@
       cursor: pointer;
       padding: 6px 10px;
       border-radius: 4px;
+      white-space: nowrap;
     }
     .cart-btn:hover { border-color: white; }
+    .microbit-btn {
+      border: 1px solid #ff9900;
+      font-size: 13px;
+      font-weight: 600;
+    }
     .cart-count {
       background: #ff9900;
       color: #131921;
@@ -139,6 +146,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 15px;
     }
     .hero h1 { font-size: 26px; margin-bottom: 6px; }
     .hero p { color: #d5dbdb; font-size: 14px; }
@@ -148,6 +156,7 @@
       border-radius: 4px;
       font-weight: bold;
       font-size: 14px;
+      white-space: nowrap;
     }
 
     /* Main Grid */
@@ -357,6 +366,9 @@
     </div>
 
     <div class="header-actions">
+      <button class="cart-btn microbit-btn" id="connect-microbit" onclick="connectMicrobit()">
+        🔌 Connect micro:bit
+      </button>
       <div class="nav-item" onclick="openCart()">
         Hello, Guest
         <strong>Orders & Cart</strong>
@@ -380,7 +392,7 @@
     <div class="hero">
       <div>
         <h1>Mega Pretend Deals Day</h1>
-        <p>Add anything to your cart and pay with any pretend card number. Instant fake delivery dates!</p>
+        <p>Add anything to your cart and pay with any pretend card number—or tap Button A on your connected micro:bit V2!</p>
       </div>
       <div class="hero-badge">100% FAKE DEALS</div>
     </div>
@@ -429,6 +441,7 @@
     ];
 
     let cart = [];
+    let microbitWriter = null;
 
     function renderProducts(list) {
       const grid = document.getElementById("product-grid");
@@ -556,9 +569,10 @@
         return;
       }
 
-      // Generate fake delivery date (4 days from today)
+      // Generate a random fake delivery date (between 2 and 15 days from today)
+      const randomDays = Math.floor(Math.random() * 14) + 2;
       const deliveryDate = new Date();
-      deliveryDate.setDate(deliveryDate.getDate() + 4);
+      deliveryDate.setDate(deliveryDate.getDate() + randomDays);
       const formattedDate = deliveryDate.toLocaleDateString("en-US", {
         weekday: "long", month: "short", day: "numeric", year: "numeric"
       });
@@ -580,7 +594,64 @@
       cart = [];
       updateCartUI();
       document.getElementById("card-input").value = "";
+
+      // Send signal to connected micro:bit V2
+      if (microbitWriter) {
+        microbitWriter.write("PAID\n");
+      }
     });
+
+    // BBC micro:bit V2 Web Serial Connection
+    async function connectMicrobit() {
+      if (!("serial" in navigator)) {
+        alert("Please open this site in Google Chrome or Microsoft Edge to connect your micro:bit!");
+        return;
+      }
+
+      try {
+        const port = await navigator.serial.requestPort();
+        await port.open({ baudRate: 115200 });
+
+        document.getElementById("connect-microbit").textContent = "✅ micro:bit Connected";
+
+        // Writer to send messages TO the micro:bit
+        const textEncoder = new TextEncoderStream();
+        textEncoder.readable.pipeTo(port.writable);
+        microbitWriter = textEncoder.writable.getWriter();
+
+        // Reader to listen to buttons FROM the micro:bit
+        const textDecoder = new TextDecoderStream();
+        port.readable.pipeTo(textDecoder.writable);
+        const reader = textDecoder.readable.getReader();
+
+        let buffer = "";
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          buffer += value;
+          let lines = buffer.split("\n");
+          buffer = lines.pop();
+
+          for (let line of lines) {
+            const msg = line.trim();
+            if (msg === "ADD_RANDOM") {
+              const randomItem = products[Math.floor(Math.random() * products.length)];
+              addToCart(randomItem.id, false);
+            } else if (msg === "TAP_PAY") {
+              if (cart.length === 0) {
+                alert("Cart is empty! Press Button B on your micro:bit to add an item first.");
+              } else {
+                openCart();
+                document.getElementById("card-input").value = "MICROBIT-TAP-CARD";
+                document.getElementById("checkout-form").dispatchEvent(new Event("submit"));
+              }
+            }
+          }
+        }
+      } catch (err) {
+        console.log("Connection cancelled or failed:", err);
+      }
+    }
 
     // Load products on start
     renderProducts(products);
