@@ -8,7 +8,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
     body { background-color: #eaeded; color: #0f1111; }
 
-    /* Safety Demo Banner */
     .demo-banner {
       background: #ffd814;
       color: #0f1111;
@@ -19,204 +18,77 @@
       border-bottom: 1px solid #e0b900;
     }
 
-    /* Amazon/eBay Style Top Header */
     header {
       background-color: #131921;
       color: white;
       padding: 10px 20px;
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       position: sticky;
       top: 0;
       z-index: 100;
+      flex-wrap: wrap;
     }
-    .logo {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
+    .logo { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; cursor: pointer; white-space: nowrap; }
     .logo span { color: #ff9900; }
     .logo small { font-size: 11px; font-weight: 400; color: #ccc; display: block; margin-top: -4px; }
 
-    /* Search Bar */
-    .search-bar {
-      flex: 1;
-      display: flex;
-      height: 40px;
-      border-radius: 6px;
-      overflow: hidden;
-    }
-    .search-bar select {
-      background: #e6e6e6;
-      border: none;
-      padding: 0 10px;
-      font-size: 13px;
-      color: #333;
-      cursor: pointer;
-      border-right: 1px solid #cdcdcd;
-    }
-    .search-bar input {
-      flex: 1;
-      border: none;
-      padding: 0 12px;
-      font-size: 15px;
-      outline: none;
-    }
-    .search-bar button {
-      background: #febd69;
-      border: none;
-      padding: 0 18px;
-      font-size: 16px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+    .search-bar { flex: 1; min-width: 220px; display: flex; height: 40px; border-radius: 6px; overflow: hidden; }
+    .search-bar select { background: #e6e6e6; border: none; padding: 0 10px; font-size: 13px; color: #333; cursor: pointer; border-right: 1px solid #cdcdcd; }
+    .search-bar input { flex: 1; border: none; padding: 0 12px; font-size: 15px; outline: none; }
+    .search-bar button { background: #febd69; border: none; padding: 0 18px; font-size: 16px; cursor: pointer; font-weight: bold; }
     .search-bar button:hover { background: #f3a847; }
 
-    /* Header Right Buttons */
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .nav-item {
-      cursor: pointer;
-      font-size: 12px;
-      line-height: 1.2;
-      white-space: nowrap;
-    }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .nav-item { cursor: pointer; font-size: 12px; line-height: 1.2; white-space: nowrap; }
     .nav-item strong { font-size: 14px; display: block; }
     .cart-btn {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: transparent;
-      border: 1px solid transparent;
-      color: white;
-      cursor: pointer;
-      padding: 6px 10px;
-      border-radius: 4px;
-      white-space: nowrap;
+      display: flex; align-items: center; gap: 6px; background: transparent;
+      border: 1px solid transparent; color: white; cursor: pointer; padding: 6px 10px;
+      border-radius: 4px; white-space: nowrap;
     }
     .cart-btn:hover { border-color: white; }
-    .microbit-btn {
-      border: 1px solid #ff9900;
-      font-size: 13px;
-      font-weight: 600;
-    }
-    .cart-count {
-      background: #ff9900;
-      color: #131921;
-      font-weight: 800;
-      padding: 2px 7px;
-      border-radius: 12px;
-      font-size: 14px;
-    }
+    .microbit-btn { border: 1px solid #ff9900; font-size: 13px; font-weight: 600; }
+    .sell-btn { background: #007185; border: 1px solid #00a8c6; font-size: 13px; font-weight: 600; }
+    .sell-btn:hover { background: #005f70; }
+    .cart-count { background: #ff9900; color: #131921; font-weight: 800; padding: 2px 7px; border-radius: 12px; font-size: 14px; }
 
-    /* Sub-Navigation Bar */
-    .sub-nav {
-      background-color: #232f3e;
-      color: white;
-      padding: 8px 20px;
-      display: flex;
-      gap: 16px;
-      font-size: 14px;
-      overflow-x: auto;
-    }
-    .sub-nav span {
-      cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 3px;
-      white-space: nowrap;
-    }
-    .sub-nav span:hover, .sub-nav span.active {
-      background: #37475a;
-    }
+    .sub-nav { background-color: #232f3e; color: white; padding: 8px 20px; display: flex; gap: 16px; font-size: 14px; overflow-x: auto; }
+    .sub-nav span { cursor: pointer; padding: 4px 8px; border-radius: 3px; white-space: nowrap; }
+    .sub-nav span:hover, .sub-nav span.active { background: #37475a; }
 
-    /* Hero Banner */
     .hero {
       background: linear-gradient(135deg, #232f3e 0%, #37475a 100%);
-      color: white;
-      padding: 28px 30px;
-      margin: 15px auto 0;
-      max-width: 1300px;
-      border-radius: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
+      color: white; padding: 24px 30px; margin: 15px auto 0; max-width: 1300px;
+      border-radius: 8px; display: flex; justify-content: space-between; align-items: center; gap: 15px;
     }
-    .hero h1 { font-size: 26px; margin-bottom: 6px; }
+    .hero h1 { font-size: 24px; margin-bottom: 6px; }
     .hero p { color: #d5dbdb; font-size: 14px; }
-    .hero-badge {
-      background: #cc0c39;
-      padding: 8px 14px;
-      border-radius: 4px;
-      font-weight: bold;
-      font-size: 14px;
-      white-space: nowrap;
-    }
+    .hero-badge { background: #cc0c39; padding: 8px 14px; border-radius: 4px; font-weight: bold; font-size: 14px; white-space: nowrap; }
 
-    /* Main Grid */
-    .main-container {
-      max-width: 1300px;
-      margin: 20px auto;
-      padding: 0 15px;
-    }
-    .section-title {
-      font-size: 20px;
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 18px;
-    }
+    .main-container { max-width: 1300px; margin: 20px auto; padding: 0 15px; }
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin: 22px 0 15px; }
+    .section-title { font-size: 20px; font-weight: 700; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
 
-    /* Product Cards */
     .product-card {
-      background: white;
-      border-radius: 8px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-      transition: transform 0.15s ease;
+      background: white; border-radius: 8px; padding: 16px; display: flex;
+      flex-direction: column; justify-content: space-between;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08); transition: transform 0.15s ease;
     }
     .product-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
     .product-img {
-      width: 100%;
-      height: 170px;
-      background: #f7f8f8;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 64px;
-      margin-bottom: 12px;
-      position: relative;
+      width: 100%; height: 170px; background: #f7f8f8; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 64px; margin-bottom: 12px; position: relative; overflow: hidden;
     }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; }
     .deal-tag {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      background: #cc0c39;
-      color: white;
-      font-size: 11px;
-      font-weight: bold;
-      padding: 3px 6px;
-      border-radius: 3px;
+      position: absolute; top: 8px; left: 8px; background: #cc0c39; color: white;
+      font-size: 11px; font-weight: bold; padding: 3px 6px; border-radius: 3px; z-index: 2;
     }
-    .product-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: #0f1111;
-      margin-bottom: 4px;
-    }
+    .product-title { font-size: 16px; font-weight: 600; color: #0f1111; margin-bottom: 4px; }
     .seller { font-size: 12px; color: #565959; margin-bottom: 6px; }
     .rating { color: #ffa41c; font-size: 14px; margin-bottom: 6px; }
     .rating span { color: #007185; font-size: 12px; margin-left: 4px; }
@@ -226,119 +98,56 @@
     .shipping strong { color: #007600; }
 
     .btn-group { display: flex; flex-direction: column; gap: 8px; }
-    .btn-cart {
-      background: #ffd814;
-      border: 1px solid #fcd200;
-      border-radius: 20px;
-      padding: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+    .btn-cart { background: #ffd814; border: 1px solid #fcd200; border-radius: 20px; padding: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
     .btn-cart:hover { background: #f7ca00; }
-    .btn-buy {
-      background: #ffa41c;
-      border: 1px solid #ff8f00;
-      border-radius: 20px;
-      padding: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-    }
+    .btn-buy { background: #ffa41c; border: 1px solid #ff8f00; border-radius: 20px; padding: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
     .btn-buy:hover { background: #fa8900; }
 
-    /* Slide-over Cart & Checkout Drawer */
-    .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      z-index: 200;
-    }
+    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); display: none; z-index: 200; }
     .drawer {
-      position: fixed;
-      top: 0;
-      right: -420px;
-      width: 100%;
-      max-width: 400px;
-      height: 100%;
-      background: white;
-      z-index: 201;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      transition: right 0.25s ease;
-      overflow-y: auto;
+      position: fixed; top: 0; right: -420px; width: 100%; max-width: 400px; height: 100%;
+      background: white; z-index: 201; padding: 20px; display: flex; flex-direction: column;
+      transition: right 0.25s ease; overflow-y: auto;
     }
     .drawer.open { right: 0; }
-    .drawer-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 12px;
-      margin-bottom: 15px;
-    }
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 22px;
-      cursor: pointer;
-    }
+    .drawer-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 12px; margin-bottom: 15px; }
+    .close-btn { background: none; border: none; font-size: 22px; cursor: pointer; }
     .cart-list { flex: 1; overflow-y: auto; }
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-      font-size: 14px;
-    }
-    .remove-btn {
-      color: #007185;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 12px;
-      margin-left: 8px;
-    }
+    .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+    .remove-btn { color: #007185; background: none; border: none; cursor: pointer; font-size: 12px; margin-left: 8px; }
     .remove-btn:hover { text-decoration: underline; }
 
-    .checkout-section {
-      border-top: 2px solid #eee;
-      padding-top: 15px;
-      margin-top: 10px;
-    }
-    .checkout-section input {
-      width: 100%;
-      padding: 10px;
-      margin: 6px 0 12px;
-      border: 1px solid #888c8c;
-      border-radius: 4px;
-    }
-    .place-order-btn {
-      width: 100%;
-      background: #ffd814;
-      border: 1px solid #fcd200;
-      padding: 12px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 15px;
-      cursor: pointer;
-    }
+    .checkout-section { border-top: 2px solid #eee; padding-top: 15px; margin-top: 10px; }
+    .checkout-section input { width: 100%; padding: 10px; margin: 6px 0 12px; border: 1px solid #888c8c; border-radius: 4px; }
+    .place-order-btn { width: 100%; background: #ffd814; border: 1px solid #fcd200; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 15px; cursor: pointer; }
     .place-order-btn:hover { background: #f7ca00; }
+    .place-order-btn:disabled { background: #ccc; border-color: #bbb; cursor: not-allowed; }
 
     .order-receipt {
-      display: none;
-      background: #f0f8ff;
-      border: 1px solid #007185;
-      border-radius: 8px;
-      padding: 15px;
-      margin-top: 15px;
-      font-size: 14px;
-      line-height: 1.5;
+      display: none; background: #f0f8ff; border: 1px solid #007185;
+      border-radius: 8px; padding: 15px; margin-top: 15px; font-size: 14px; line-height: 1.5;
     }
     .order-receipt h4 { color: #007600; margin-bottom: 6px; }
+
+    .modal {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: white; width: 92%; max-width: 460px; border-radius: 10px;
+      padding: 22px; z-index: 202; display: none;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto;
+    }
+    .modal label { display: block; font-size: 13px; font-weight: 600; margin-top: 10px; margin-bottom: 4px; }
+    .modal input, .modal select { width: 100%; padding: 9px; border: 1px solid #888c8c; border-radius: 5px; font-size: 14px; }
+    .preview-box {
+      margin-top: 10px; height: 110px; background: #f7f8f8; border: 1px dashed #bbb;
+      border-radius: 6px; display: flex; align-items: center; justify-content: center;
+      overflow: hidden; font-size: 13px; color: #565959;
+    }
+    .preview-box img { max-height: 100%; max-width: 100%; object-fit: contain; }
+    .token-box {
+      background: #f4f8fb; border: 1px solid #bcd6e6; padding: 10px;
+      border-radius: 6px; margin-top: 12px; font-size: 12px;
+    }
+    .status-msg { margin-top: 10px; font-size: 13px; font-weight: 600; color: #007185; }
   </style>
 </head>
 <body>
@@ -347,7 +156,6 @@
     🚧 PRETEND MARKETPLACE DEMO — Fake store for practice only. Any card number works & nothing will actually ship!
   </div>
 
-  <!-- Top Navigation -->
   <header>
     <div class="logo" onclick="filterCategory('All')">
       Amaz<span>Bay</span>
@@ -360,12 +168,16 @@
         <option value="Electronics">Electronics</option>
         <option value="Weird & Fun">Weird & Fun</option>
         <option value="Fashion">Fashion</option>
+        <option value="Community">Community</option>
       </select>
       <input type="text" id="search-input" placeholder="Search AmazBay pretend items..." onkeyup="filterProducts()" />
       <button onclick="filterProducts()">🔍</button>
     </div>
 
     <div class="header-actions">
+      <button class="cart-btn sell-btn" onclick="openSellModal()">
+        ➕ Sell an Item
+      </button>
       <button class="cart-btn microbit-btn" id="connect-microbit" onclick="connectMicrobit()">
         🔌 Connect micro:bit
       </button>
@@ -379,34 +191,80 @@
     </div>
   </header>
 
-  <!-- Sub-navigation -->
   <div class="sub-nav">
     <span class="active" onclick="setSubNav(this, 'All')">All Deals</span>
     <span onclick="setSubNav(this, 'Electronics')">Electronics</span>
     <span onclick="setSubNav(this, 'Weird & Fun')">Weird & Fun</span>
     <span onclick="setSubNav(this, 'Fashion')">Fashion</span>
+    <span onclick="setSubNav(this, 'Community')">Community</span>
   </div>
 
-  <!-- Promo Banner -->
   <div class="main-container">
     <div class="hero">
       <div>
         <h1>Mega Pretend Deals Day</h1>
-        <p>Add anything to your cart and pay with any pretend card number—or tap Button A on your connected micro:bit V2!</p>
+        <p>Click <strong>+ Sell an Item</strong> to publish new products directly to GitHub so everyone can see and buy them!</p>
       </div>
       <div class="hero-badge">100% FAKE DEALS</div>
     </div>
 
-    <h2 class="section-title" style="margin-top: 22px;" id="grid-heading">Featured Marketplace Items</h2>
+    <div class="section-header">
+      <h2 class="section-title" id="grid-heading">Featured Marketplace Items</h2>
+    </div>
     <div class="product-grid" id="product-grid"></div>
   </div>
 
+  <!-- Sell an Item Modal -->
+  <div class="modal" id="sell-modal">
+    <div class="drawer-header">
+      <h3>Publish Item to GitHub Store</h3>
+      <button class="close-btn" onclick="closeModals()">✕</button>
+    </div>
+    <form id="sell-form">
+      <label>Item Title *</label>
+      <input type="text" id="item-name" placeholder="e.g. Flying Gaming Chair" required />
+
+      <label>Price ($) *</label>
+      <input type="number" id="item-price" step="0.01" min="0.01" placeholder="e.g. 99.99" required />
+
+      <label>Category</label>
+      <select id="item-category">
+        <option value="Community">Community</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Weird & Fun">Weird & Fun</option>
+        <option value="Fashion">Fashion</option>
+      </select>
+
+      <label>Seller Name</label>
+      <input type="text" id="item-seller" placeholder="e.g. ShreyasStore" />
+
+      <label>Deal Badge</label>
+      <input type="text" id="item-deal" value="NEW" />
+
+      <label>Upload Product Image</label>
+      <input type="file" id="item-image" accept="image/*" onchange="previewUploadedImage(event)" />
+      <div class="preview-box" id="image-preview">No image chosen (will use 📦 icon)</div>
+
+      <div class="token-box">
+        <label style="margin-top:0;">GitHub Fine-Grained Token (saved only in your browser):</label>
+        <input type="password" id="github-token" placeholder="Paste github_pat_... here" required />
+        <p style="margin-top:4px; color:#555;">This uploads the image and updates <code>products.json</code> in your repo so everyone sees your item.</p>
+      </div>
+
+      <div class="status-msg" id="publish-status"></div>
+
+      <button type="submit" class="place-order-btn" id="publish-btn" style="margin-top: 14px;">
+        Publish to GitHub (Everyone Sees It)
+      </button>
+    </form>
+  </div>
+
   <!-- Slide-out Cart & Checkout Drawer -->
-  <div class="overlay" id="overlay" onclick="closeCart()"></div>
+  <div class="overlay" id="overlay" onclick="closeModals()"></div>
   <div class="drawer" id="cart-drawer">
     <div class="drawer-header">
       <h3>Shopping Cart</h3>
-      <button class="close-btn" onclick="closeCart()">✕</button>
+      <button class="close-btn" onclick="closeModals()">✕</button>
     </div>
 
     <div class="cart-list" id="cart-items">
@@ -429,7 +287,11 @@
   </div>
 
   <script>
-    const products = [
+    // Your GitHub Repository Details
+    const GITHUB_OWNER = "shreyas368";
+    const GITHUB_REPO = "pretend-store";
+
+    const defaultProducts = [
       { id: 1, name: "Quantum Hoverboard Pro", category: "Electronics", price: 199.99, rating: "★★★★★", reviews: "4,812", seller: "FutureTech Inc.", emoji: "🛹", deal: "35% OFF" },
       { id: 2, name: "Invisibility Cloak (Standard Size)", category: "Fashion", price: 89.50, rating: "★★★★☆", reviews: "1,209", seller: "WizardGoods", emoji: "🧥", deal: "TOP PICK" },
       { id: 3, name: "Infinite Refill Pizza Box", category: "Weird & Fun", price: 34.99, rating: "★★★★★", reviews: "9,430", seller: "SnackLabs", emoji: "🍕", deal: "DEAL" },
@@ -440,8 +302,28 @@
       { id: 8, name: "Self-Folding Laundry Basket", category: "Weird & Fun", price: 45.00, rating: "★★★★★", reviews: "5,321", seller: "LazyHome", emoji: "🧺", deal: "HOT DEAL" }
     ];
 
+    let publicProducts = [];
+    let products = [...defaultProducts];
     let cart = [];
     let microbitWriter = null;
+    let selectedFile = null;
+
+    // Load saved token into the input box if already entered before
+    document.getElementById("github-token").value = localStorage.getItem("amazbay_gh_token") || "";
+
+    // Fetch public products.json from GitHub so EVERYONE sees published items
+    async function loadPublicProducts() {
+      try {
+        const res = await fetch(`products.json?t=${Date.now()}`);
+        if (res.ok) {
+          publicProducts = await res.json();
+          products = [...publicProducts, ...defaultProducts];
+        }
+      } catch (e) {
+        console.log("No products.json yet—showing default items.");
+      }
+      renderProducts(products);
+    }
 
     function renderProducts(list) {
       const grid = document.getElementById("product-grid");
@@ -458,11 +340,15 @@
         const whole = Math.floor(item.price);
         const cents = (item.price % 1).toFixed(2).substring(2);
 
+        const mediaHtml = item.image
+          ? `<img src="${item.image}" alt="${item.name}" />`
+          : (item.emoji || "📦");
+
         card.innerHTML = `
           <div>
             <div class="product-img">
-              <span class="deal-tag">${item.deal}</span>
-              ${item.emoji}
+              <span class="deal-tag">${item.deal || "NEW"}</span>
+              ${mediaHtml}
             </div>
             <div class="product-title">${item.name}</div>
             <div class="seller">Sold by ${item.seller}</div>
@@ -478,6 +364,163 @@
         grid.appendChild(card);
       });
     }
+
+    function previewUploadedImage(event) {
+      selectedFile = event.target.files[0];
+      const previewBox = document.getElementById("image-preview");
+
+      if (!selectedFile) {
+        previewBox.innerHTML = "No image chosen (will use 📦 icon)";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        previewBox.innerHTML = `<img src="${e.target.result}" alt="Preview" />`;
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+
+    // Helper: Convert File to Base64 string for GitHub API
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(",")[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Helper: Encode UTF-8 string to Base64 safely
+    function utf8ToBase64(str) {
+      return btoa(unescape(encodeURIComponent(str)));
+    }
+
+    // Publish image & product details directly to GitHub repo
+    document.getElementById("sell-form").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const token = document.getElementById("github-token").value.trim();
+      const statusEl = document.getElementById("publish-status");
+      const btn = document.getElementById("publish-btn");
+
+      if (!token) {
+        alert("Please paste your GitHub token first!");
+        return;
+      }
+
+      // Save token locally in browser for convenience
+      localStorage.setItem("amazbay_gh_token", token);
+
+      btn.disabled = true;
+      statusEl.textContent = "⏳ Connecting to GitHub...";
+
+      try {
+        let imagePath = null;
+
+        // 1. Upload image file to /images/ folder in GitHub repo if chosen
+        if (selectedFile) {
+          statusEl.textContent = "⏳ Uploading image to GitHub...";
+          const base64Img = await fileToBase64(selectedFile);
+          const cleanName = selectedFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+          imagePath = `images/${Date.now()}_${cleanName}`;
+
+          const imgRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${imagePath}`, {
+            method: "PUT",
+            headers: {
+              "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              message: `Upload product image ${cleanName}`,
+              content: base64Img
+            })
+          });
+
+          if (!imgRes.ok) {
+            const errData = await imgRes.json();
+            throw new Error(errData.message || "Failed to upload image.");
+          }
+        }
+
+        // 2. Check if products.json already exists in GitHub to get its SHA
+        statusEl.textContent = "⏳ Updating public store catalog...";
+        let existingSha = null;
+        let currentList = [];
+
+        const getRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/products.json`, {
+          headers: { "Authorization": `Bearer ${token}` }
+        });
+
+        if (getRes.ok) {
+          const fileData = await getRes.json();
+          existingSha = fileData.sha;
+          const decodedJson = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ""))));
+          currentList = JSON.parse(decodedJson);
+        }
+
+        // 3. Create the new item object and add it to the top of products.json
+        const newProduct = {
+          id: Date.now(),
+          name: document.getElementById("item-name").value.trim(),
+          category: document.getElementById("item-category").value,
+          price: parseFloat(document.getElementById("item-price").value),
+          rating: "★★★★★",
+          reviews: "1",
+          seller: document.getElementById("item-seller").value.trim() || "Community Seller",
+          emoji: "📦",
+          image: imagePath,
+          deal: (document.getElementById("item-deal").value.trim() || "NEW").toUpperCase()
+        };
+
+        currentList.unshift(newProduct);
+
+        const putBody = {
+          message: `Add new item: ${newProduct.name}`,
+          content: utf8ToBase64(JSON.stringify(currentList, null, 2))
+        };
+        if (existingSha) putBody.sha = existingSha;
+
+        const putRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/products.json`, {
+          method: "PUT",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(putBody)
+        });
+
+        if (!putRes.ok) {
+          const errData = await putRes.json();
+          throw new Error(errData.message || "Failed to update products.json");
+        }
+
+        statusEl.textContent = "✅ Published! GitHub Pages will update for everyone in ~60 seconds.";
+
+        // Show immediately on your screen using local preview while GitHub Pages rebuilds
+        const localPreviewItem = { ...newProduct };
+        if (selectedFile) {
+          localPreviewItem.image = URL.createObjectURL(selectedFile);
+        }
+        publicProducts.unshift(localPreviewItem);
+        products = [...publicProducts, ...defaultProducts];
+        filterProducts();
+
+        setTimeout(() => {
+          document.getElementById("sell-form").reset();
+          document.getElementById("github-token").value = token;
+          selectedFile = null;
+          document.getElementById("image-preview").innerHTML = "No image chosen (will use 📦 icon)";
+          statusEl.textContent = "";
+          btn.disabled = false;
+          closeModals();
+        }, 2000);
+
+      } catch (err) {
+        statusEl.textContent = "❌ Error: " + err.message;
+        btn.disabled = false;
+      }
+    });
 
     function filterProducts() {
       const query = document.getElementById("search-input").value.toLowerCase();
@@ -509,6 +552,7 @@
 
     function addToCart(id, openImmediately) {
       const product = products.find(p => p.id === id);
+      if (!product) return;
       cart.push(product);
       updateCartUI();
       if (openImmediately) openCart();
@@ -541,7 +585,7 @@
         div.className = "cart-item";
         div.innerHTML = `
           <div>
-            <strong>${item.emoji} ${item.name}</strong><br>
+            <strong>${item.name}</strong><br>
             <span style="color:#565959;">$${item.price.toFixed(2)}</span>
           </div>
           <button class="remove-btn" onclick="removeFromCart(${index})">Delete</button>
@@ -553,13 +597,21 @@
     }
 
     function openCart() {
+      closeModals();
       document.getElementById("overlay").style.display = "block";
       document.getElementById("cart-drawer").classList.add("open");
     }
 
-    function closeCart() {
+    function openSellModal() {
+      closeModals();
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("sell-modal").style.display = "block";
+    }
+
+    function closeModals() {
       document.getElementById("overlay").style.display = "none";
       document.getElementById("cart-drawer").classList.remove("open");
+      document.getElementById("sell-modal").style.display = "none";
     }
 
     document.getElementById("checkout-form").addEventListener("submit", function(e) {
@@ -569,7 +621,6 @@
         return;
       }
 
-      // Generate a random fake delivery date (between 2 and 15 days from today)
       const randomDays = Math.floor(Math.random() * 14) + 2;
       const deliveryDate = new Date();
       deliveryDate.setDate(deliveryDate.getDate() + randomDays);
@@ -577,7 +628,6 @@
         weekday: "long", month: "short", day: "numeric", year: "numeric"
       });
 
-      // Generate fake order number
       const fakeOrderId = "FAKE-" + Math.floor(100000 + Math.random() * 900000);
 
       const receipt = document.getElementById("order-receipt");
@@ -595,13 +645,11 @@
       updateCartUI();
       document.getElementById("card-input").value = "";
 
-      // Send signal to connected micro:bit V2
       if (microbitWriter) {
         microbitWriter.write("PAID\n");
       }
     });
 
-    // BBC micro:bit V2 Web Serial Connection
     async function connectMicrobit() {
       if (!("serial" in navigator)) {
         alert("Please open this site in Google Chrome or Microsoft Edge to connect your micro:bit!");
@@ -614,12 +662,10 @@
 
         document.getElementById("connect-microbit").textContent = "✅ micro:bit Connected";
 
-        // Writer to send messages TO the micro:bit
         const textEncoder = new TextEncoderStream();
         textEncoder.readable.pipeTo(port.writable);
         microbitWriter = textEncoder.writable.getWriter();
 
-        // Reader to listen to buttons FROM the micro:bit
         const textDecoder = new TextDecoderStream();
         port.readable.pipeTo(textDecoder.writable);
         const reader = textDecoder.readable.getReader();
@@ -653,8 +699,7 @@
       }
     }
 
-    // Load products on start
-    renderProducts(products);
+    loadPublicProducts();
   </script>
 </body>
 </html>
