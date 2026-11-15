@@ -9,26 +9,13 @@
     body { background-color: #eaeded; color: #0f1111; }
 
     .demo-banner {
-      background: #ffd814;
-      color: #0f1111;
-      text-align: center;
-      padding: 8px 12px;
-      font-size: 13px;
-      font-weight: 700;
-      border-bottom: 1px solid #e0b900;
+      background: #ffd814; color: #0f1111; text-align: center;
+      padding: 8px 12px; font-size: 13px; font-weight: 700; border-bottom: 1px solid #e0b900;
     }
 
     header {
-      background-color: #131921;
-      color: white;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      flex-wrap: wrap;
+      background-color: #131921; color: white; padding: 10px 20px;
+      display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 100; flex-wrap: wrap;
     }
     .logo { font-size: 24px; font-weight: 800; letter-spacing: -0.5px; cursor: pointer; white-space: nowrap; }
     .logo span { color: #ff9900; }
@@ -41,8 +28,19 @@
     .search-bar button:hover { background: #f3a847; }
 
     .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-    .nav-item { cursor: pointer; font-size: 12px; line-height: 1.2; white-space: nowrap; }
-    .nav-item strong { font-size: 14px; display: block; }
+    .nav-item {
+      cursor: pointer; font-size: 12px; line-height: 1.2; white-space: nowrap;
+      padding: 5px 8px; border-radius: 4px; border: 1px solid transparent;
+    }
+    .nav-item:hover { border-color: white; }
+    .nav-item strong { font-size: 13px; display: block; }
+    .role-badge {
+      display: inline-block; font-size: 10px; padding: 1px 5px; border-radius: 4px;
+      margin-left: 4px; font-weight: 700; vertical-align: middle;
+    }
+    .role-owner { background: #ff9900; color: #131921; }
+    .role-standard { background: #37475a; color: #fff; }
+
     .cart-btn {
       display: flex; align-items: center; gap: 6px; background: transparent;
       border: 1px solid transparent; color: white; cursor: pointer; padding: 6px 10px;
@@ -52,7 +50,7 @@
     .microbit-btn { border: 1px solid #ff9900; font-size: 13px; font-weight: 600; }
     .sell-btn { background: #007185; border: 1px solid #00a8c6; font-size: 13px; font-weight: 600; }
     .sell-btn:hover { background: #005f70; }
-    .banner-edit-btn { background: #37475a; border: 1px solid #6c829d; font-size: 13px; font-weight: 600; }
+    .banner-edit-btn { background: #37475a; border: 1px solid #6c829d; font-size: 13px; font-weight: 600; display: none; }
     .banner-edit-btn:hover { background: #485c75; }
     .cart-count { background: #ff9900; color: #131921; font-weight: 800; padding: 2px 7px; border-radius: 12px; font-size: 14px; }
 
@@ -62,116 +60,43 @@
 
     /* 4-Card Colorful Promo Banner */
     .main-container { max-width: 1320px; margin: 16px auto; padding: 0 15px; }
-
-    .promo-carousel-wrapper {
-      position: relative;
-      margin-bottom: 24px;
-    }
-    .promo-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-    @media (max-width: 1024px) {
-      .promo-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 560px) {
-      .promo-grid { grid-template-columns: 1fr; }
-    }
+    .promo-carousel-wrapper { position: relative; margin-bottom: 24px; }
+    .promo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    @media (max-width: 1024px) { .promo-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .promo-grid { grid-template-columns: 1fr; } }
 
     .promo-card {
-      border-radius: 14px;
-      padding: 20px 18px 16px;
-      color: white;
-      min-height: 360px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      border-radius: 14px; padding: 20px 18px 16px; color: white; min-height: 360px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      cursor: pointer; position: relative; overflow: hidden; transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
-    .promo-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-    }
+    .promo-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.18); }
     .promo-blue { background: linear-gradient(180deg, #0073e6 0%, #005bb5 100%); }
     .promo-purple { background: linear-gradient(180deg, #6200ea 0%, #4a00b4 100%); }
     .promo-orange { background: linear-gradient(180deg, #ff6200 0%, #e65100 100%); }
     .promo-green { background: linear-gradient(180deg, #0b4628 0%, #062c18 100%); }
 
-    .promo-eyebrow {
-      font-size: 14px;
-      font-weight: 500;
-      opacity: 0.95;
-      margin-bottom: 6px;
-    }
-    .promo-headline {
-      font-size: 25px;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.4px;
-      margin-bottom: 12px;
-    }
+    .promo-eyebrow { font-size: 14px; font-weight: 500; opacity: 0.95; margin-bottom: 6px; }
+    .promo-headline { font-size: 25px; font-weight: 800; line-height: 1.15; letter-spacing: -0.4px; margin-bottom: 12px; }
     .promo-pill {
-      display: inline-block;
-      background: #ffd814;
-      color: #0f1111;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 20px;
-      width: fit-content;
+      display: inline-block; background: #ffd814; color: #0f1111;
+      font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; width: fit-content;
     }
     .promo-visual {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-size: 70px;
-      margin: 12px 0;
-      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.25));
-      overflow: hidden;
-      border-radius: 10px;
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      gap: 10px; font-size: 70px; margin: 12px 0;
+      filter: drop-shadow(0 8px 12px rgba(0,0,0,0.25)); overflow: hidden; border-radius: 10px;
     }
-    .promo-visual img {
-      width: 100%;
-      height: 155px;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-    .promo-visual-sub {
-      font-size: 46px;
-    }
-    .promo-footer {
-      font-size: 11px;
-      opacity: 0.85;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+    .promo-visual img { width: 100%; height: 155px; object-fit: cover; border-radius: 10px; }
+    .promo-visual-sub { font-size: 46px; }
+    .promo-footer { font-size: 11px; opacity: 0.85; display: flex; align-items: center; justify-content: space-between; }
 
     .carousel-next-btn {
-      position: absolute;
-      right: -6px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 44px;
-      height: 64px;
-      background: white;
-      border: 1px solid #d5d9d9;
-      border-radius: 8px;
-      font-size: 22px;
-      font-weight: bold;
-      color: #0f1111;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: absolute; right: -6px; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 64px; background: white; border: 1px solid #d5d9d9;
+      border-radius: 8px; font-size: 22px; font-weight: bold; color: #0f1111;
+      cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 10;
+      display: flex; align-items: center; justify-content: center;
     }
     .carousel-next-btn:hover { background: #f7fafa; }
 
@@ -196,6 +121,13 @@
       position: absolute; top: 8px; left: 8px; background: #cc0c39; color: white;
       font-size: 11px; font-weight: bold; padding: 3px 6px; border-radius: 3px; z-index: 2;
     }
+    .owner-delete-btn {
+      position: absolute; top: 8px; right: 8px; background: #cc0c39; color: white;
+      border: none; border-radius: 4px; padding: 4px 8px; font-size: 11px;
+      font-weight: 700; cursor: pointer; z-index: 2;
+    }
+    .owner-delete-btn:hover { background: #a3092d; }
+
     .product-title { font-size: 16px; font-weight: 600; color: #0f1111; margin-bottom: 4px; }
     .seller { font-size: 12px; color: #565959; margin-bottom: 6px; }
     .rating { color: #ffa41c; font-size: 14px; margin-bottom: 6px; }
@@ -244,6 +176,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto;
     }
     .modal label { display: block; font-size: 13px; font-weight: 600; margin-top: 10px; margin-bottom: 4px; }
+    .password-note { font-weight: 400; color: #b12704; font-size: 12px; }
     .modal input, .modal select { width: 100%; padding: 9px; border: 1px solid #888c8c; border-radius: 5px; font-size: 14px; }
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .preview-box {
@@ -258,8 +191,20 @@
     }
     .status-msg { margin-top: 10px; font-size: 13px; font-weight: 600; color: #007185; }
     .secondary-btn {
-      background: #e7e9ec; border: 1px solid #adb1b8; padding: 6px 10px;
-      border-radius: 5px; font-size: 12px; cursor: pointer; margin-top: 6px;
+      background: #e7e9ec; border: 1px solid #adb1b8; padding: 8px 12px;
+      border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 8px; width: 100%;
+    }
+    .secondary-btn:hover { background: #dcdfe3; }
+
+    .tab-row { display: flex; gap: 8px; margin-bottom: 12px; }
+    .tab-btn {
+      flex: 1; padding: 8px; border: 1px solid #ccc; background: #f7f8f8;
+      border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer;
+    }
+    .tab-btn.active { background: #232f3e; color: white; border-color: #232f3e; }
+    .account-info-card {
+      background: #f7f8f8; border: 1px solid #ddd; border-radius: 8px;
+      padding: 14px; margin-bottom: 12px; font-size: 14px; line-height: 1.5;
     }
   </style>
 </head>
@@ -291,15 +236,15 @@
       <button class="cart-btn sell-btn" onclick="openSellModal()">
         ➕ Sell an Item
       </button>
-      <button class="cart-btn banner-edit-btn" onclick="openBannerModal()">
+      <button class="cart-btn banner-edit-btn" id="edit-banners-btn" onclick="openBannerModal()">
         ✏️ Edit Banners
       </button>
       <button class="cart-btn microbit-btn" id="connect-microbit" onclick="connectMicrobit()">
         🔌 Connect micro:bit
       </button>
-      <div class="nav-item" onclick="openCart()">
-        Hello, Guest
-        <strong>Orders & Cart</strong>
+      <div class="nav-item" id="account-nav-btn" onclick="openAccountModal()">
+        <span id="nav-greeting">Hello, Guest</span>
+        <strong id="nav-account-label">Sign In / Account</strong>
       </div>
       <button class="cart-btn" onclick="openCart()">
         🛒 <span class="cart-count" id="cart-count">0</span>
@@ -327,10 +272,76 @@
     <div class="product-grid" id="product-grid"></div>
   </div>
 
+  <!-- Account Sign-In / Role Modal -->
+  <div class="modal" id="account-modal">
+    <div class="drawer-header">
+      <h3>AmazBay Account</h3>
+      <button class="close-btn" onclick="closeModals()">✕</button>
+    </div>
+
+    <div id="logged-in-view" style="display:none;">
+      <div class="account-info-card">
+        <p><strong>Signed in as:</strong> <span id="profile-username"></span></p>
+        <p><strong>Account Type:</strong> <span id="profile-role"></span></p>
+        <p id="profile-permissions" style="margin-top:6px; font-size:13px; color:#565959;"></p>
+      </div>
+      <button class="secondary-btn" onclick="logoutAccount()">Sign Out</button>
+    </div>
+
+    <div id="logged-out-view">
+      <div class="tab-row">
+        <button type="button" class="tab-btn active" id="tab-standard" onclick="switchAccountTab('standard')">
+          👤 Standard Account
+        </button>
+        <button type="button" class="tab-btn" id="tab-owner" onclick="switchAccountTab('owner')">
+          👑 Owner Sign In
+        </button>
+      </div>
+
+      <!-- Standard Account Form -->
+      <form id="standard-login-form">
+        <p style="font-size:12px; color:#565959; margin-bottom:8px;">
+          Standard accounts can <strong>view, buy, and sell items</strong>, but cannot edit banners or store settings.
+        </p>
+        <label>Username *</label>
+        <input type="text" id="std-username" placeholder="e.g. AlexShopper" required />
+
+        <label>
+          Pretend Password *
+          <span class="password-note">(Note: Since this is a pretend marketplace, remind friends to use a fake password—never a real password they use on other websites.)</span>
+        </label>
+        <input type="password" id="std-password" placeholder="Enter a fake password" required />
+
+        <button type="submit" class="place-order-btn" style="margin-top:14px;">
+          Sign In / Create Standard Account
+        </button>
+      </form>
+
+      <!-- Owner Account Form -->
+      <form id="owner-login-form" style="display:none;">
+        <p style="font-size:12px; color:#565959; margin-bottom:8px;">
+          Sign in with your <strong>Owner</strong> credentials to unlock banner editing, item deletion, and GitHub publishing.
+        </p>
+        <label>Owner Username *</label>
+        <input type="text" id="owner-username" placeholder="shreyas" required />
+
+        <label>
+          Owner Passcode *
+          <span class="password-note">(Note: Since this is a pretend marketplace, use a fake/custom passcode—never a real password you use on other websites.)</span>
+        </label>
+        <input type="password" id="owner-passcode" placeholder="Enter owner passcode" required />
+
+        <button type="submit" class="place-order-btn" style="margin-top:14px;">
+          Sign In as Store Owner
+        </button>
+      </form>
+    </div>
+  </div>
+
   <!-- Sell an Item Modal -->
   <div class="modal" id="sell-modal">
     <div class="drawer-header">
-      <h3>Publish Item to GitHub Store</h3>
+      <h3 id="sell-modal-title">List an Item</h3>
       <button class="close-btn" onclick="closeModals()">✕</button>
     </div>
     <form id="sell-form">
@@ -349,7 +360,7 @@
       </select>
 
       <label>Seller Name</label>
-      <input type="text" id="item-seller" placeholder="e.g. ShreyasStore" />
+      <input type="text" id="item-seller" placeholder="Your seller name" />
 
       <label>Deal Badge</label>
       <input type="text" id="item-deal" value="NEW" />
@@ -358,24 +369,24 @@
       <input type="file" id="item-image" accept="image/*" onchange="previewUploadedImage(event)" />
       <div class="preview-box" id="image-preview">No image chosen (will use 📦 icon)</div>
 
-      <div class="token-box">
-        <label style="margin-top:0;">GitHub Fine-Grained Token (saved only in your browser):</label>
-        <input type="password" id="github-token" placeholder="Paste github_pat_... here" required />
-        <p style="margin-top:4px; color:#555;">Saves the image and updates <code>products.json</code> in your repo so everyone sees your item.</p>
+      <div class="token-box" id="owner-sell-token-box" style="display:none;">
+        <label style="margin-top:0;">Owner GitHub Token (Publishes for Everyone):</label>
+        <input type="password" id="github-token" placeholder="Paste github_pat_... here" />
+        <p style="margin-top:4px; color:#555;">Uploads the image and updates <code>products.json</code> in GitHub so all visitors see it.</p>
       </div>
 
       <div class="status-msg" id="publish-status"></div>
 
       <button type="submit" class="place-order-btn" id="publish-btn" style="margin-top: 14px;">
-        Publish to GitHub (Everyone Sees It)
+        List Item on AmazBay
       </button>
     </form>
   </div>
 
-  <!-- Edit Banners Modal -->
+  <!-- Owner-Only Edit Banners Modal -->
   <div class="modal" id="banner-modal">
     <div class="drawer-header">
-      <h3>Edit Promo Banner Cards</h3>
+      <h3>👑 Owner: Edit Promo Banner Cards</h3>
       <button class="close-btn" onclick="closeModals()">✕</button>
     </div>
     <form id="banner-form">
@@ -490,62 +501,116 @@
     const GITHUB_OWNER = "shreyas368";
     const GITHUB_REPO = "pretend-store";
 
-    const defaultPromos = [
-      {
-        theme: "promo-blue",
-        eyebrow: "Get what you need fast",
-        headline: "Free delivery on millions of items",
-        pill: "Join Pretend Prime",
-        mainEmoji: "☕",
-        subEmoji: "📦",
-        image: null,
-        footer: "Pretend terms apply.",
-        actionType: "ALL"
-      },
-      {
-        theme: "promo-purple",
-        eyebrow: "Early Haul-iday drop",
-        headline: "$1 deals, for a limited time",
-        pill: "amazbay haul",
-        mainEmoji: "🧥",
-        subEmoji: "🎉",
-        image: null,
-        footer: "Limit 2 per pretend customer",
-        actionType: "FASHION"
-      },
-      {
-        theme: "promo-orange",
-        eyebrow: "Black Friday early deal",
-        headline: "Shop 4+ star picks under $50",
-        pill: "",
-        mainEmoji: "🍕",
-        subEmoji: "🧺",
-        image: null,
-        footer: "Top rated pretend items",
-        actionType: "UNDER_50"
-      },
-      {
-        theme: "promo-green",
-        eyebrow: "Holiday Collection",
-        headline: "Shop holiday gifts for all",
-        pill: "",
-        mainEmoji: "🎁",
-        subEmoji: "🎮",
-        image: null,
-        footer: "Explore Electronics & Fun",
-        actionType: "ELECTRONICS"
-      },
-      {
-        theme: "promo-blue",
-        eyebrow: "micro:bit V2 Edition",
-        headline: "Tap Button A to buy instantly",
-        pill: "Hardware Ready",
-        mainEmoji: "🔌",
-        subEmoji: "🛹",
-        image: null,
-        footer: "Works in Chrome & Edge",
-        actionType: "MICROBIT"
+    // Owner Account Credentials (change OWNER_PASSCODE to your preferred owner passcode)
+    const OWNER_USERNAME = "shreyas";
+    const OWNER_PASSCODE = "owner123";
+
+    let currentUser = JSON.parse(localStorage.getItem("amazbay_user") || "null");
+
+    function isOwner() {
+      return currentUser && currentUser.role === "owner";
+    }
+
+    function updateAccountUI() {
+      const greeting = document.getElementById("nav-greeting");
+      const label = document.getElementById("nav-account-label");
+      const editBannersBtn = document.getElementById("edit-banners-btn");
+      const ownerSellBox = document.getElementById("owner-sell-token-box");
+      const publishBtn = document.getElementById("publish-btn");
+
+      if (!currentUser) {
+        greeting.textContent = "Hello, Guest";
+        label.innerHTML = "Sign In / Account";
+        editBannersBtn.style.display = "none";
+        ownerSellBox.style.display = "none";
+        publishBtn.textContent = "List Item (Browser Session)";
+      } else if (currentUser.role === "owner") {
+        greeting.textContent = `Hello, ${currentUser.username}`;
+        label.innerHTML = `Account <span class="role-badge role-owner">OWNER</span>`;
+        editBannersBtn.style.display = "flex";
+        ownerSellBox.style.display = "block";
+        publishBtn.textContent = "Publish to GitHub (Everyone Sees It)";
+      } else {
+        greeting.textContent = `Hello, ${currentUser.username}`;
+        label.innerHTML = `Account <span class="role-badge role-standard">STANDARD</span>`;
+        editBannersBtn.style.display = "none";
+        ownerSellBox.style.display = "none";
+        publishBtn.textContent = "List Item on AmazBay";
       }
+
+      renderProducts(products);
+    }
+
+    function openAccountModal() {
+      closeModals();
+      const loggedInView = document.getElementById("logged-in-view");
+      const loggedOutView = document.getElementById("logged-out-view");
+
+      if (currentUser) {
+        loggedInView.style.display = "block";
+        loggedOutView.style.display = "none";
+        document.getElementById("profile-username").textContent = currentUser.username;
+        document.getElementById("profile-role").textContent =
+          currentUser.role === "owner" ? "👑 Store Owner (Full Edit Access)" : "👤 Standard Account (View, Buy & Sell Only)";
+        document.getElementById("profile-permissions").textContent =
+          currentUser.role === "owner"
+            ? "You can edit promo banners, delete public listings, and publish items globally to GitHub."
+            : "You can browse all items, buy items with pretend payment, and list your own items.";
+      } else {
+        loggedInView.style.display = "none";
+        loggedOutView.style.display = "block";
+      }
+
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("account-modal").style.display = "block";
+    }
+
+    function switchAccountTab(tab) {
+      document.getElementById("tab-standard").classList.toggle("active", tab === "standard");
+      document.getElementById("tab-owner").classList.toggle("active", tab === "owner");
+      document.getElementById("standard-login-form").style.display = tab === "standard" ? "block" : "none";
+      document.getElementById("owner-login-form").style.display = tab === "owner" ? "block" : "none";
+    }
+
+    document.getElementById("standard-login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("std-username").value.trim();
+      if (!username) return;
+      currentUser = { username: username, role: "standard" };
+      localStorage.setItem("amazbay_user", JSON.stringify(currentUser));
+      updateAccountUI();
+      closeModals();
+    });
+
+    document.getElementById("owner-login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("owner-username").value.trim();
+      const passcode = document.getElementById("owner-passcode").value;
+
+      if (username.toLowerCase() === OWNER_USERNAME.toLowerCase() && passcode === OWNER_PASSCODE) {
+        currentUser = { username: username, role: "owner" };
+        localStorage.setItem("amazbay_user", JSON.stringify(currentUser));
+        updateAccountUI();
+        closeModals();
+      } else {
+        alert("Incorrect Owner username or passcode! Standard users should use the Standard Account tab.");
+      }
+    });
+
+    function logoutAccount() {
+      currentUser = null;
+      localStorage.removeItem("amazbay_user");
+      updateAccountUI();
+      closeModals();
+    }
+
+    // Promo Banner Data & Functions
+    const defaultPromos = [
+      { theme: "promo-blue", eyebrow: "Get what you need fast", headline: "Free delivery on millions of items", pill: "Join Pretend Prime", mainEmoji: "☕", subEmoji: "📦", image: null, footer: "Pretend terms apply.", actionType: "ALL" },
+      { theme: "promo-purple", eyebrow: "Early Haul-iday drop", headline: "$1 deals, for a limited time", pill: "amazbay haul", mainEmoji: "🧥", subEmoji: "🎉", image: null, footer: "Limit 2 per pretend customer", actionType: "FASHION" },
+      { theme: "promo-orange", eyebrow: "Black Friday early deal", headline: "Shop 4+ star picks under $50", pill: "", mainEmoji: "🍕", subEmoji: "🧺", image: null, footer: "Top rated pretend items", actionType: "UNDER_50" },
+      { theme: "promo-green", eyebrow: "Holiday Collection", headline: "Shop holiday gifts for all", pill: "", mainEmoji: "🎁", subEmoji: "🎮", image: null, footer: "Explore Electronics & Fun", actionType: "ELECTRONICS" },
+      { theme: "promo-blue", eyebrow: "micro:bit V2 Edition", headline: "Tap Button A to buy instantly", pill: "Hardware Ready", mainEmoji: "🔌", subEmoji: "🛹", image: null, footer: "Works in Chrome & Edge", actionType: "MICROBIT" }
     ];
 
     let promoCards = [...defaultPromos];
@@ -582,9 +647,7 @@
             promoCards = savedBanners;
           }
         }
-      } catch (e) {
-        console.log("Using default promo banners.");
-      }
+      } catch (e) {}
       renderPromos();
     }
 
@@ -598,10 +661,7 @@
         card.className = `promo-card ${cardData.theme || "promo-blue"}`;
         card.onclick = () => triggerBannerAction(cardData.actionType);
 
-        const badgeHtml = cardData.pill
-          ? `<span class="promo-pill">${cardData.pill}</span>`
-          : "";
-
+        const badgeHtml = cardData.pill ? `<span class="promo-pill">${cardData.pill}</span>` : "";
         const visualHtml = cardData.image
           ? `<img src="${cardData.image}" alt="${cardData.headline}" />`
           : `<span>${cardData.mainEmoji || "🎁"}</span>${cardData.subEmoji ? `<span class="promo-visual-sub">${cardData.subEmoji}</span>` : ""}`;
@@ -612,12 +672,8 @@
             <div class="promo-headline">${cardData.headline}</div>
             ${badgeHtml}
           </div>
-          <div class="promo-visual">
-            ${visualHtml}
-          </div>
-          <div class="promo-footer">
-            <span>${cardData.footer || ""}</span>
-          </div>
+          <div class="promo-visual">${visualHtml}</div>
+          <div class="promo-footer"><span>${cardData.footer || ""}</span></div>
         `;
         grid.appendChild(card);
       }
@@ -628,11 +684,13 @@
       renderPromos();
     }
 
-    // Banner Editor Modal Functions
     function openBannerModal() {
+      if (!isOwner()) {
+        alert("Only the Store Owner can edit banners!");
+        return;
+      }
       closeModals();
-      const savedToken = localStorage.getItem("amazbay_gh_token") || "";
-      document.getElementById("banner-github-token").value = savedToken;
+      document.getElementById("banner-github-token").value = localStorage.getItem("amazbay_gh_token") || "";
       document.getElementById("banner-slot-select").value = "0";
       loadBannerIntoForm();
       document.getElementById("overlay").style.display = "block";
@@ -656,18 +714,15 @@
       document.getElementById("banner-emoji2").value = b.subEmoji || "";
 
       const previewBox = document.getElementById("banner-image-preview");
-      if (b.image) {
-        previewBox.innerHTML = `<img src="${b.image}" alt="Current Banner" />`;
-      } else {
-        previewBox.innerHTML = `Using emojis: ${b.mainEmoji || "🎁"} ${b.subEmoji || ""}`;
-      }
+      previewBox.innerHTML = b.image
+        ? `<img src="${b.image}" alt="Current Banner" />`
+        : `Using emojis: ${b.mainEmoji || "🎁"} ${b.subEmoji || ""}`;
     }
 
     function previewBannerImage(event) {
       selectedBannerFile = event.target.files[0];
       clearCurrentBannerImg = false;
       const previewBox = document.getElementById("banner-image-preview");
-
       if (!selectedBannerFile) return;
 
       const reader = new FileReader();
@@ -686,15 +741,11 @@
 
     document.getElementById("banner-form").addEventListener("submit", async function(e) {
       e.preventDefault();
+      if (!isOwner()) return;
 
       const token = document.getElementById("banner-github-token").value.trim();
       const statusEl = document.getElementById("banner-status");
       const btn = document.getElementById("banner-save-btn");
-
-      if (!token) {
-        alert("Please paste your GitHub token first!");
-        return;
-      }
 
       localStorage.setItem("amazbay_gh_token", token);
       btn.disabled = true;
@@ -712,23 +763,12 @@
 
           const imgRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${finalImagePath}`, {
             method: "PUT",
-            headers: {
-              "Authorization": `Bearer ${token}`,
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              message: `Upload banner image ${cleanName}`,
-              content: base64Img
-            })
+            headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
+            body: JSON.stringify({ message: `Upload banner image ${cleanName}`, content: base64Img })
           });
-
-          if (!imgRes.ok) {
-            const errData = await imgRes.json();
-            throw new Error(errData.message || "Failed to upload banner picture.");
-          }
+          if (!imgRes.ok) throw new Error((await imgRes.json()).message || "Failed to upload banner picture.");
         }
 
-        // Update the selected banner card
         promoCards[idx] = {
           theme: document.getElementById("banner-theme").value,
           actionType: document.getElementById("banner-action").value,
@@ -743,15 +783,10 @@
 
         statusEl.textContent = "⏳ Saving banners.json to GitHub...";
         let existingSha = null;
-
         const getRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/banners.json`, {
           headers: { "Authorization": `Bearer ${token}` }
         });
-
-        if (getRes.ok) {
-          const fileData = await getRes.json();
-          existingSha = fileData.sha;
-        }
+        if (getRes.ok) existingSha = (await getRes.json()).sha;
 
         const putBody = {
           message: `Update promo banner card ${idx + 1}`,
@@ -761,43 +796,25 @@
 
         const putRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/banners.json`, {
           method: "PUT",
-          headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
-          },
+          headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
           body: JSON.stringify(putBody)
         });
+        if (!putRes.ok) throw new Error((await putRes.json()).message || "Failed to save banners.json");
 
-        if (!putRes.ok) {
-          const errData = await putRes.json();
-          throw new Error(errData.message || "Failed to save banners.json");
+        if (selectedBannerFile) {
+          promoCards[idx].image = URL.createObjectURL(selectedBannerFile);
         }
-
-        // Show local preview immediately while GitHub Pages rebuilds
-        const displayCards = promoCards.map((c, i) => {
-          if (i === idx && selectedBannerFile) {
-            return { ...c, image: URL.createObjectURL(selectedBannerFile) };
-          }
-          return c;
-        });
-        promoCards = displayCards;
         renderPromos();
 
         statusEl.textContent = "✅ Banners saved! Everyone will see the update in ~60 seconds.";
-
-        setTimeout(() => {
-          statusEl.textContent = "";
-          btn.disabled = false;
-          closeModals();
-        }, 1800);
-
+        setTimeout(() => { statusEl.textContent = ""; btn.disabled = false; closeModals(); }, 1800);
       } catch (err) {
         statusEl.textContent = "❌ Error: " + err.message;
         btn.disabled = false;
       }
     });
 
-    // Products Logic
+    // Products Data & Functions
     const defaultProducts = [
       { id: 1, name: "Quantum Hoverboard Pro", category: "Electronics", price: 199.99, rating: "★★★★★", reviews: "4,812", seller: "FutureTech Inc.", emoji: "🛹", deal: "35% OFF" },
       { id: 2, name: "Invisibility Cloak (Standard Size)", category: "Fashion", price: 89.50, rating: "★★★★☆", reviews: "1,209", seller: "WizardGoods", emoji: "🧥", deal: "TOP PICK" },
@@ -810,24 +827,26 @@
     ];
 
     let publicProducts = [];
-    let products = [...defaultProducts];
+    let localUserProducts = JSON.parse(localStorage.getItem("amazbay_local_items") || "[]");
+    let products = [...localUserProducts, ...defaultProducts];
     let cart = [];
     let microbitWriter = null;
     let selectedFile = null;
+    let previewDataUrl = null;
 
-    document.getElementById("github-token").value = localStorage.getItem("amazbay_gh_token") || "";
+    function rebuildProductList() {
+      products = [...localUserProducts, ...publicProducts, ...defaultProducts];
+      filterProducts();
+    }
 
     async function loadPublicProducts() {
       try {
         const res = await fetch(`products.json?t=${Date.now()}`);
         if (res.ok) {
           publicProducts = await res.json();
-          products = [...publicProducts, ...defaultProducts];
         }
-      } catch (e) {
-        console.log("No products.json yet—showing default items.");
-      }
-      renderProducts(products);
+      } catch (e) {}
+      rebuildProductList();
     }
 
     function renderProducts(list) {
@@ -849,10 +868,18 @@
           ? `<img src="${item.image}" alt="${item.name}" />`
           : (item.emoji || "📦");
 
+        // Owner sees a Delete button on public or local items
+        const isPublicItem = publicProducts.some(p => p.id === item.id);
+        const isLocalItem = localUserProducts.some(p => p.id === item.id);
+        const deleteHtml = (isOwner() && (isPublicItem || isLocalItem))
+          ? `<button class="owner-delete-btn" onclick="deleteItem(${item.id}, ${isPublicItem})">Delete</button>`
+          : "";
+
         card.innerHTML = `
           <div>
             <div class="product-img">
               <span class="deal-tag">${item.deal || "NEW"}</span>
+              ${deleteHtml}
               ${mediaHtml}
             </div>
             <div class="product-title">${item.name}</div>
@@ -870,8 +897,52 @@
       });
     }
 
+    async function deleteItem(id, isPublic) {
+      if (!isOwner()) return;
+      if (!confirm("Delete this item from the marketplace?")) return;
+
+      if (!isPublic) {
+        localUserProducts = localUserProducts.filter(p => p.id !== id);
+        localStorage.setItem("amazbay_local_items", JSON.stringify(localUserProducts));
+        rebuildProductList();
+        return;
+      }
+
+      const token = localStorage.getItem("amazbay_gh_token") || prompt("Paste your GitHub token to delete this item from products.json:");
+      if (!token) return;
+      localStorage.setItem("amazbay_gh_token", token);
+
+      try {
+        const getRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/products.json`, {
+          headers: { "Authorization": `Bearer ${token}` }
+        });
+        if (!getRes.ok) throw new Error("Could not fetch products.json");
+
+        const fileData = await getRes.json();
+        const decoded = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ""))));
+        const updatedList = JSON.parse(decoded).filter(p => p.id !== id);
+
+        const putRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/products.json`, {
+          method: "PUT",
+          headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: `Remove item ${id}`,
+            content: utf8ToBase64(JSON.stringify(updatedList, null, 2)),
+            sha: fileData.sha
+          })
+        });
+        if (!putRes.ok) throw new Error("Failed to update products.json");
+
+        publicProducts = updatedList;
+        rebuildProductList();
+      } catch (err) {
+        alert("Delete failed: " + err.message);
+      }
+    }
+
     function previewUploadedImage(event) {
       selectedFile = event.target.files[0];
+      previewDataUrl = null;
       const previewBox = document.getElementById("image-preview");
 
       if (!selectedFile) {
@@ -881,7 +952,8 @@
 
       const reader = new FileReader();
       reader.onload = function(e) {
-        previewBox.innerHTML = `<img src="${e.target.result}" alt="Preview" />`;
+        previewDataUrl = e.target.result;
+        previewBox.innerHTML = `<img src="${previewDataUrl}" alt="Preview" />`;
       };
       reader.readAsDataURL(selectedFile);
     }
@@ -902,122 +974,109 @@
     document.getElementById("sell-form").addEventListener("submit", async function(e) {
       e.preventDefault();
 
-      const token = document.getElementById("github-token").value.trim();
       const statusEl = document.getElementById("publish-status");
       const btn = document.getElementById("publish-btn");
+      const defaultSeller = currentUser ? currentUser.username : "Community Seller";
 
-      if (!token) {
-        alert("Please paste your GitHub token first!");
-        return;
-      }
+      const newProduct = {
+        id: Date.now(),
+        name: document.getElementById("item-name").value.trim(),
+        category: document.getElementById("item-category").value,
+        price: parseFloat(document.getElementById("item-price").value),
+        rating: "★★★★★",
+        reviews: "1",
+        seller: document.getElementById("item-seller").value.trim() || defaultSeller,
+        emoji: "📦",
+        image: previewDataUrl,
+        deal: (document.getElementById("item-deal").value.trim() || "NEW").toUpperCase()
+      };
 
-      localStorage.setItem("amazbay_gh_token", token);
+      // If Owner has a GitHub token, publish globally to GitHub
+      const token = document.getElementById("github-token").value.trim();
+      if (isOwner() && token) {
+        localStorage.setItem("amazbay_gh_token", token);
+        btn.disabled = true;
+        statusEl.textContent = "⏳ Publishing to GitHub...";
 
-      btn.disabled = true;
-      statusEl.textContent = "⏳ Connecting to GitHub...";
+        try {
+          let imagePath = null;
+          if (selectedFile) {
+            statusEl.textContent = "⏳ Uploading image to GitHub...";
+            const base64Img = await fileToBase64(selectedFile);
+            const cleanName = selectedFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+            imagePath = `images/${Date.now()}_${cleanName}`;
 
-      try {
-        let imagePath = null;
-
-        if (selectedFile) {
-          statusEl.textContent = "⏳ Uploading image to GitHub...";
-          const base64Img = await fileToBase64(selectedFile);
-          const cleanName = selectedFile.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-          imagePath = `images/${Date.now()}_${cleanName}`;
-
-          const imgRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${imagePath}`, {
-            method: "PUT",
-            headers: {
-              "Authorization": `Bearer ${token}`,
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              message: `Upload product image ${cleanName}`,
-              content: base64Img
-            })
-          });
-
-          if (!imgRes.ok) {
-            const errData = await imgRes.json();
-            throw new Error(errData.message || "Failed to upload image.");
+            const imgRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${imagePath}`, {
+              method: "PUT",
+              headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
+              body: JSON.stringify({ message: `Upload product image ${cleanName}`, content: base64Img })
+            });
+            if (!imgRes.ok) throw new Error((await imgRes.json()).message || "Failed to upload image.");
           }
-        }
 
-        statusEl.textContent = "⏳ Updating public store catalog...";
-        let existingSha = null;
-        let currentList = [];
+          let existingSha = null;
+          let currentList = [];
+          const getRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/products.json`, {
+            headers: { "Authorization": `Bearer ${token}` }
+          });
+          if (getRes.ok) {
+            const fileData = await getRes.json();
+            existingSha = fileData.sha;
+            const decodedJson = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ""))));
+            currentList = JSON.parse(decodedJson);
+          }
 
-        const getRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/products.json`, {
-          headers: { "Authorization": `Bearer ${token}` }
-        });
+          const ghProduct = { ...newProduct, image: imagePath };
+          currentList.unshift(ghProduct);
 
-        if (getRes.ok) {
-          const fileData = await getRes.json();
-          existingSha = fileData.sha;
-          const decodedJson = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g, ""))));
-          currentList = JSON.parse(decodedJson);
-        }
+          const putBody = {
+            message: `Add new item: ${ghProduct.name}`,
+            content: utf8ToBase64(JSON.stringify(currentList, null, 2))
+          };
+          if (existingSha) putBody.sha = existingSha;
 
-        const newProduct = {
-          id: Date.now(),
-          name: document.getElementById("item-name").value.trim(),
-          category: document.getElementById("item-category").value,
-          price: parseFloat(document.getElementById("item-price").value),
-          rating: "★★★★★",
-          reviews: "1",
-          seller: document.getElementById("item-seller").value.trim() || "Community Seller",
-          emoji: "📦",
-          image: imagePath,
-          deal: (document.getElementById("item-deal").value.trim() || "NEW").toUpperCase()
-        };
+          const putRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/products.json`, {
+            method: "PUT",
+            headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
+            body: JSON.stringify(putBody)
+          });
+          if (!putRes.ok) throw new Error((await putRes.json()).message || "Failed to update products.json");
 
-        currentList.unshift(newProduct);
+          publicProducts.unshift({ ...ghProduct, image: previewDataUrl });
+          rebuildProductList();
+          statusEl.textContent = "✅ Published to GitHub for everyone!";
 
-        const putBody = {
-          message: `Add new item: ${newProduct.name}`,
-          content: utf8ToBase64(JSON.stringify(currentList, null, 2))
-        };
-        if (existingSha) putBody.sha = existingSha;
-
-        const putRes = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/products.json`, {
-          method: "PUT",
-          headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(putBody)
-        });
-
-        if (!putRes.ok) {
-          const errData = await putRes.json();
-          throw new Error(errData.message || "Failed to update products.json");
-        }
-
-        statusEl.textContent = "✅ Published! GitHub Pages will update for everyone in ~60 seconds.";
-
-        const localPreviewItem = { ...newProduct };
-        if (selectedFile) {
-          localPreviewItem.image = URL.createObjectURL(selectedFile);
-        }
-        publicProducts.unshift(localPreviewItem);
-        products = [...publicProducts, ...defaultProducts];
-        filterProducts();
-
-        setTimeout(() => {
-          document.getElementById("sell-form").reset();
-          document.getElementById("github-token").value = token;
-          selectedFile = null;
-          document.getElementById("image-preview").innerHTML = "No image chosen (will use 📦 icon)";
-          statusEl.textContent = "";
+          setTimeout(() => {
+            resetSellForm();
+            btn.disabled = false;
+            closeModals();
+          }, 1600);
+          return;
+        } catch (err) {
+          statusEl.textContent = "❌ Error: " + err.message;
           btn.disabled = false;
-          closeModals();
-        }, 2000);
-
-      } catch (err) {
-        statusEl.textContent = "❌ Error: " + err.message;
-        btn.disabled = false;
+          return;
+        }
       }
+
+      // Standard Account (or Owner without token): save to browser localStorage
+      localUserProducts.unshift(newProduct);
+      try {
+        localStorage.setItem("amazbay_local_items", JSON.stringify(localUserProducts));
+      } catch (e) {}
+      rebuildProductList();
+      resetSellForm();
+      closeModals();
     });
+
+    function resetSellForm() {
+      document.getElementById("sell-form").reset();
+      document.getElementById("github-token").value = localStorage.getItem("amazbay_gh_token") || "";
+      selectedFile = null;
+      previewDataUrl = null;
+      document.getElementById("image-preview").innerHTML = "No image chosen (will use 📦 icon)";
+      document.getElementById("publish-status").textContent = "";
+    }
 
     function filterProducts() {
       const query = document.getElementById("search-input").value.toLowerCase();
@@ -1102,6 +1161,9 @@
     function openSellModal() {
       closeModals();
       document.getElementById("github-token").value = localStorage.getItem("amazbay_gh_token") || "";
+      if (currentUser) {
+        document.getElementById("item-seller").value = currentUser.username;
+      }
       document.getElementById("overlay").style.display = "block";
       document.getElementById("sell-modal").style.display = "block";
     }
@@ -1111,6 +1173,7 @@
       document.getElementById("cart-drawer").classList.remove("open");
       document.getElementById("sell-modal").style.display = "none";
       document.getElementById("banner-modal").style.display = "none";
+      document.getElementById("account-modal").style.display = "none";
     }
 
     document.getElementById("checkout-form").addEventListener("submit", function(e) {
@@ -1198,6 +1261,7 @@
       }
     }
 
+    updateAccountUI();
     loadPublicBanners();
     loadPublicProducts();
   </script>
